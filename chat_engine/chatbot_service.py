@@ -30,7 +30,7 @@ class ChatbotService:
             max_tokens=1000,
             n=1,
             stop=None,
-            temperature=0.5
+            temperature=0
         )
         
         # Return the response from the OpenAI API

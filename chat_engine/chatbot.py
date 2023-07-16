@@ -1,9 +1,10 @@
-# app.py
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from chatbot_service import ChatbotService
 import update
 
 app = Flask(__name__)
+CORS(app)  # Add this line to enable CORS
 update.start()
 chatbot_service = ChatbotService(api_key='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', excel_file='output.xlsx')
 
@@ -16,4 +17,3 @@ def chat():
 
 if __name__ == '__main__':
     app.run()
-    
