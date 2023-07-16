@@ -1,4 +1,3 @@
-# chatbot_service3.py
 import pandas as pd
 import openai
 
@@ -10,6 +9,9 @@ class ChatbotService:
         
         # Load the Excel file into a pandas DataFrame
         self.excel_data = pd.read_excel(excel_file)
+
+        # Fill empty cells in populated rows
+        self.excel_data.fillna("", inplace=True)
         
         # Convert the DataFrame to a text representation
         self.data_text = self.excel_data.to_string(index=False)
