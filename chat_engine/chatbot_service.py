@@ -16,7 +16,7 @@ class ChatbotService:
         
     def send_message(self, message):
         # Add the data to the API prompt
-        prompt = message + '\n' + self.data_text
+        prompt = self.data_text + '\n' + message
         
         # Call the OpenAI API to send a message
         response = openai.ChatCompletion.create(
