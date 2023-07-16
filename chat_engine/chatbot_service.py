@@ -19,14 +19,17 @@ class ChatbotService:
         prompt = message + '\n' + self.data_text
         
         # Call the OpenAI API to send a message
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-0613",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ],
             max_tokens=1000,
             n=1,
             stop=None,
-            temperature=0.7
+            temperature=0.5
         )
         
         # Return the response from the OpenAI API
-        return response.choices[0].text.strip()
+        return response['choices'][0]['message']['content']
