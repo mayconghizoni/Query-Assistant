@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify
+from dotenv import load_dotenv
 from flask_cors import CORS
 from chatbot_service import ChatbotService
+import os
 import update
 
 app = Flask(__name__)
 CORS(app)  # Add this line to enable CORS
 update.start()
-chatbot_service = ChatbotService(api_key='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', excel_file='output.xlsx')
+chatbot_service = ChatbotService(api_key=os.getenv("OPENIA_KEY"), excel_file='output.xlsx')
 
 @app.route('/chat', methods=['POST'])
 def chat():
